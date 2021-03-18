@@ -1,5 +1,6 @@
 import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
+import randomSeed from 'random-seed';
 
 interface Dictionary {
   [i: string]: readonly string[];
@@ -9,8 +10,11 @@ const MATCHES_WORD = /\b\w+\b/g;
 
 const ALLOWED_SHORT_WORDS = ['i', 'a', 'an'];
 
-const kirstify = (text: string, dictionary: Dictionary) =>
-  text.replace(MATCHES_WORD, (word) => {
+const kirstify = (text: string, dictionary: Dictionary) => {
+  const trimmed = text.trim();
+  const random = randomSeed.create(trimmed);
+
+  return trimmed.replace(MATCHES_WORD, (word) => {
     if (word.length <= 2 && !ALLOWED_SHORT_WORDS.includes(word.toLowerCase())) {
       return word;
     }
@@ -29,8 +33,7 @@ const kirstify = (text: string, dictionary: Dictionary) =>
       return word;
     }
 
-    const newWord =
-      alternatives[Math.floor(Math.random() * alternatives.length)];
+    const newWord = alternatives[random.range(alternatives.length)];
 
     if (!newWord) {
       return word;
@@ -38,6 +41,7 @@ const kirstify = (text: string, dictionary: Dictionary) =>
 
     return newWord;
   });
+};
 
 const App = () => {
   const [dictionary, setDictionary] = useState<Dictionary | null>(null);
