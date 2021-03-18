@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/><title>Kirstify</title><link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/><style>* {
+<!doctype html><html><head><meta charset="utf-8"/><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1"/><title>Kirstify</title><link rel="shortcut icon" href="images/favicon.png" type="image/x-icon"/><link rel="preconnect" href="https://fonts.gstatic.com"/><link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap" rel="stylesheet"/><style>* {
         box-sizing: border-box;
       }
 
@@ -6,8 +6,76 @@
       body {
         margin: 0;
         padding: 0;
-        font-family: arial, helvetica, sans-serif;
+        font-family: 'Open Sans', sans-serif;
         font-size: 16px;
         color: #333;
         background-color: #fff;
-      }</style></head><body><div id="app"></div><script src="bundle.7ea2b475f5e9fab6ac91.js"></script></body></html>
+      }
+
+      main {
+        margin: 24px auto;
+        text-align: center;
+        padding: 12px;
+        max-width: 768px;
+      }
+
+      .error {
+        color: #922f2f;
+      }
+
+      textarea,
+      .output {
+        border: 1px solid #ccc;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        border-radius: 4px;
+        padding: 8px;
+      }
+
+      textarea {
+        height: 100px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .output {
+        min-height: 100px;
+      }
+
+      button {
+        display: block;
+        margin: 24px auto;
+        border-radius: 4px;
+        background-color: #3788da;
+        font-family: 'Open Sans', sans-serif;
+        color: white;
+        font-size: 20px;
+        padding: 8px 12px;
+        border: none;
+        box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #2d71b4;
+      }
+
+      blockquote {
+        margin: 12px 24px;
+        padding: 0;
+        font-style: italic;
+        color: #555;
+        font-weight: 300;
+      }
+
+      h1,
+      h2,
+      p {
+        margin: 12px auto;
+      }
+
+      h2 {
+        font-size: 18px;
+      }</style></head><body><div id="app"></div><script src="bundle.70fcff7eee5c71eb79c5.js"></script></body></html>
