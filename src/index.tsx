@@ -95,6 +95,7 @@ const App = () => {
           {!!output && <div className="output">{output}</div>}
         </>
       )}
+      <h2>What are people saying about Kirstify?</h2>
       <blockquote>
         <p>
           So casually he presenteth me with what I can only assess as to be one
