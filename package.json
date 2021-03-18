@@ -4,7 +4,7 @@
   "description": "Hold you e'er wished you could arrange togehter letter condemnation view Kirsty? Forthwith you lavatory!",
   "main": "build/bundle.js",
   "scripts": {
-    "build": "tsb build",
+    "build": "tsb build && cp src/dictionary.json build/dictionary.json",
     "start": "tsb serve",
     "prettier": "prettier --write '**/*'",
     "prettier-check": "prettier --check '**/*'",
