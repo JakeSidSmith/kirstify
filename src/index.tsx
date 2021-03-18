@@ -61,10 +61,8 @@ const App = () => {
       .then((json: Dictionary) => {
         setDictionary(json);
       })
-      .catch((error) => {
-        console.log(error);
-
-        setError(error);
+      .catch((err) => {
+        setError((err && err.toString()) || 'Something went wrong');
       });
   }, []);
 
