@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
+    "sourceMap": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "noEmit": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "target": "ES6",
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "jsx": "react",
+    "baseUrl": "."
+  },
+  "include": ["src"]
+}

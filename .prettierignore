@@ -1,0 +1,14 @@
+/dist/*
+/examples/build/*
+/.vscode/*
+/coverage/*
+/scripts/*
+**/*.txt
+**/*.snap
+
+.eslintignore
+.prettierignore
+.gitignore
+.gitattributes
+.npmignore
+.nvmrc
