@@ -6,6 +6,7 @@ const config: Config = {
   indexHTMLPath: 'src/index.html',
   tsconfigPath: 'tsconfig.json',
   clearOutDirBefore: ['build'],
+  singlePageApp: false,
 };
 
 export default config;
