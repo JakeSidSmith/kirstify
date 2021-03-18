@@ -8,6 +8,11 @@
     />
     <title>Kirstify</title>
     <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap"
+      rel="stylesheet"
+    />
     <style type="text/css">
       * {
         box-sizing: border-box;
@@ -17,10 +22,64 @@
       body {
         margin: 0;
         padding: 0;
-        font-family: arial, helvetica, sans-serif;
+        font-family: 'Open Sans', sans-serif;
         font-size: 16px;
         color: #333;
         background-color: #fff;
+      }
+
+      main {
+        margin: 24px auto;
+        text-align: center;
+        padding: 12px;
+        max-width: 768px;
+      }
+
+      textarea,
+      .output {
+        border: 1px solid #ccc;
+        width: 100%;
+        max-width: 100%;
+        min-width: 100%;
+        border-radius: 4px;
+        padding: 8px;
+      }
+
+      textarea {
+        height: 100px;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 16px;
+        color: #333;
+      }
+
+      .output {
+        min-height: 100px;
+      }
+
+      button {
+        display: block;
+        margin: 24px auto;
+        border-radius: 4px;
+        background-color: #3788da;
+        font-family: 'Open Sans', sans-serif;
+        color: white;
+        font-size: 20px;
+        padding: 8px 12px;
+        border: none;
+        box-shadow: 0px 1px 2px 0 rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+      }
+
+      button:hover {
+        background-color: #2d71b4;
+      }
+
+      blockquote {
+        margin: 12px 24px;
+        padding: 0;
+        font-style: italic;
+        color: #555;
+        font-weight: 300;
       }
     </style>
   </head>
