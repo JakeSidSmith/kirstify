@@ -7,8 +7,31 @@ interface Dictionary {
 }
 
 const MATCHES_WORD = /\b\w+\b/g;
+const MATCHES_UPPERCASE = /[A-Z]/;
+const MATCHES_LOWERCASE = /[a-z]/;
 
 const ALLOWED_SHORT_WORDS = ['i', 'a', 'an'];
+
+const retainCase = (original: string, replacement: string) => {
+  const originalFirst = original.charAt(0);
+  const replacementFirst = replacement.charAt(0);
+
+  if (
+    MATCHES_UPPERCASE.test(originalFirst) &&
+    MATCHES_LOWERCASE.test(replacementFirst)
+  ) {
+    return `${replacementFirst.toUpperCase()}${replacement.substring(1)}`;
+  }
+
+  if (
+    MATCHES_LOWERCASE.test(originalFirst) &&
+    MATCHES_UPPERCASE.test(replacementFirst)
+  ) {
+    return `${replacementFirst.toLowerCase()}${replacement.substring(1)}`;
+  }
+
+  return replacement;
+};
 
 const kirstify = (text: string, dictionary: Dictionary) => {
   const trimmed = text.trim();
@@ -45,7 +68,7 @@ const kirstify = (text: string, dictionary: Dictionary) => {
           return word;
         }
 
-        return newWord;
+        return retainCase(word, newWord);
       })
     )
     .join('\n');
