@@ -14,33 +14,41 @@ const kirstify = (text: string, dictionary: Dictionary) => {
   const trimmed = text.trim();
   const random = randomSeed.create(trimmed);
 
-  return trimmed.replace(MATCHES_WORD, (word) => {
-    if (word.length <= 2 && !ALLOWED_SHORT_WORDS.includes(word.toLowerCase())) {
-      return word;
-    }
+  return trimmed
+    .split(/\n+/g)
+    .map((line) =>
+      line.trim().replace(MATCHES_WORD, (word) => {
+        if (
+          word.length <= 2 &&
+          !ALLOWED_SHORT_WORDS.includes(word.toLowerCase())
+        ) {
+          return word;
+        }
 
-    const matches = dictionary[word.toLowerCase()];
+        const matches = dictionary[word.toLowerCase()];
 
-    if (!matches) {
-      return word;
-    }
+        if (!matches) {
+          return word;
+        }
 
-    const alternatives = matches.filter(
-      (alt) => !alt.includes(' ') && alt.length >= word.length
-    );
+        const alternatives = matches.filter(
+          (alt) => !alt.includes(' ') && alt.length >= word.length
+        );
 
-    if (!alternatives.length) {
-      return word;
-    }
+        if (!alternatives.length) {
+          return word;
+        }
 
-    const newWord = alternatives[random.range(alternatives.length)];
+        const newWord = alternatives[random.range(alternatives.length)];
 
-    if (!newWord) {
-      return word;
-    }
+        if (!newWord) {
+          return word;
+        }
 
-    return newWord;
-  });
+        return newWord;
+      })
+    )
+    .join('\n');
 };
 
 const App = () => {
