@@ -15,7 +15,7 @@ const kirstify = (text: string, dictionary: Dictionary) => {
   const random = randomSeed.create(trimmed);
 
   return trimmed
-    .split(/\n+/g)
+    .split('\n')
     .map((line) =>
       line.trim().replace(MATCHES_WORD, (word) => {
         if (
