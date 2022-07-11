@@ -10,8 +10,6 @@ const MATCHES_WORD = /\b[\w']+\b/g;
 const MATCHES_UPPERCASE = /[A-Z]+/;
 const MATCHES_LOWERCASE = /[a-z]+/;
 
-const ALLOWED_SHORT_WORDS = ['i', 'a', 'an'];
-
 const retainCase = (original: string, replacement: string) => {
   const originalFirst = original.charAt(0);
   const replacementFirst = replacement.charAt(0);
@@ -49,10 +47,7 @@ const kirstify = (text: string, dictionary: Dictionary) => {
     .split('\n')
     .map((line) =>
       line.trim().replace(MATCHES_WORD, (word) => {
-        if (
-          word.length <= 2 &&
-          !ALLOWED_SHORT_WORDS.includes(word.toLowerCase())
-        ) {
+        if (word.length <= 2) {
           return word;
         }
 
