@@ -6,15 +6,23 @@ interface Dictionary {
   [i: string]: readonly string[];
 }
 
-const MATCHES_WORD = /\b\w+\b/g;
-const MATCHES_UPPERCASE = /[A-Z]/;
-const MATCHES_LOWERCASE = /[a-z]/;
+const MATCHES_WORD = /\b[\w']+\b/g;
+const MATCHES_UPPERCASE = /[A-Z]+/;
+const MATCHES_LOWERCASE = /[a-z]+/;
 
 const ALLOWED_SHORT_WORDS = ['i', 'a', 'an'];
 
 const retainCase = (original: string, replacement: string) => {
   const originalFirst = original.charAt(0);
   const replacementFirst = replacement.charAt(0);
+
+  if (original.toUpperCase() === original) {
+    return replacement.toUpperCase();
+  }
+
+  if (original.toLowerCase() === original) {
+    return replacement.toLowerCase();
+  }
 
   if (
     MATCHES_UPPERCASE.test(originalFirst) &&
