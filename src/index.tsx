@@ -6,9 +6,9 @@ interface Dictionary {
   [i: string]: readonly string[];
 }
 
-const MATCHES_WORD = /\b\w+\b/g;
 const MATCHES_UPPERCASE = /[A-Z]/;
 const MATCHES_LOWERCASE = /[a-z]/;
+const MATCHES_WORD = /\b[\w']+\b/g;
 
 const ALLOWED_SHORT_WORDS = ['i', 'a', 'an'];
 
