@@ -233,7 +233,7 @@ const App = () => {
     <main>
       <h1>Kirstify</h1>
       <p>
-        Hold you e'er wished you could arrange togehter letter condemnation view
+        Hold you e'er wished you could arrange together letter condemnation view
         Kirsty?
       </p>
       <p>Forthwith you lavatory!</p>

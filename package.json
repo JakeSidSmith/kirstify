@@ -1,7 +1,7 @@
 {
   "name": "kirstify",
   "version": "0.0.0",
-  "description": "Hold you e'er wished you could arrange togehter letter condemnation view Kirsty? Forthwith you lavatory!",
+  "description": "Hold you e'er wished you could arrange together letter condemnation view Kirsty? Forthwith you lavatory!",
   "main": "build/bundle.js",
   "scripts": {
     "build": "tsb build && cp src/dictionary.json build/dictionary.json",
