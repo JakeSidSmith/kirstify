@@ -62,6 +62,31 @@ const CONTRACTION_MAP = {
   ["n'"]: 'and',
 };
 
+const SLANG_CONTRACTION_MAP = {
+  wanna: 'want to',
+  gonna: 'going to',
+  gotta: 'got to',
+  kinda: 'kind of',
+  outta: 'out of',
+  gimme: 'give me',
+  hafta: 'have to',
+  lemme: 'let me',
+  init: 'is it not',
+  neva: 'never',
+  u: 'you',
+  r: 'are',
+  ur: 'you are',
+  im: 'i am',
+  b: 'be',
+  bb: 'baby',
+  bae: 'baby',
+  kl: 'cool',
+  klkl: 'cool cool',
+  lol: 'laugh out loud',
+  nah: 'no',
+  na: 'no',
+};
+
 const retainCase = (original: string, replacement: string) => {
   const originalFirst = original.charAt(0);
   const replacementFirst = replacement.charAt(0);
@@ -137,6 +162,15 @@ const kirstify = (text: string, dictionary: Dictionary) => {
           return retainCase(
             word,
             CONTRACTION_MAP[lower as keyof typeof CONTRACTION_MAP]
+          ).replace(MATCHES_WORD, (subWord) =>
+            swapWord(subWord, random, dictionary)
+          );
+        }
+
+        if (lower in SLANG_CONTRACTION_MAP) {
+          return retainCase(
+            word,
+            SLANG_CONTRACTION_MAP[lower as keyof typeof SLANG_CONTRACTION_MAP]
           ).replace(MATCHES_WORD, (subWord) =>
             swapWord(subWord, random, dictionary)
           );
