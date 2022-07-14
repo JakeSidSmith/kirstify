@@ -279,6 +279,10 @@ const App = () => {
         <p>I feel seen.</p>
         <footer>- Kirsty</footer>
       </blockquote>
+      <p className="contribute">
+        Have an idea to improve Kirstify? Contribute on{' '}
+        <a href="https://github.com/JakeSidSmith/kirstify">GitHub</a>.
+      </p>
     </main>
   );
 };
