@@ -61,6 +61,8 @@ const CONTRACTION_MAP = {
   "'n'": 'and',
   "n'": 'and',
   "why'd": 'why did',
+  "why's": 'why is',
+  "how's": 'how is',
 };
 
 const SLANG_CONTRACTION_MAP = {
