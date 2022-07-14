@@ -1,4 +1,10 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import React, {
+  ChangeEvent,
+  KeyboardEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import ReactDOM from 'react-dom';
 import randomSeed from 'random-seed';
 
@@ -225,11 +231,22 @@ const App = () => {
     setText(event.currentTarget.value);
   }, []);
 
+  const onKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLTextAreaElement>) => {
+      if (event.metaKey && (event.key === 'Enter' || event.keyCode === 13)) {
+        if (dictionary) {
+          setOutput(kirstify(text, dictionary));
+        }
+      }
+    },
+    [dictionary, text]
+  );
+
   const onClick = useCallback(() => {
     if (dictionary) {
       setOutput(kirstify(text, dictionary));
     }
-  }, [text, dictionary]);
+  }, [dictionary, text]);
 
   return (
     <main>
@@ -246,6 +263,7 @@ const App = () => {
           <textarea
             value={text}
             onChange={onChange}
+            onKeyDown={onKeyDown}
             placeholder="Enter some text to Kirstify..."
           ></textarea>
           <button onClick={onClick}>Kirstify!</button>
