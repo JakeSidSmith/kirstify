@@ -10,6 +10,58 @@ const MATCHES_WORD = /\b[\w']+\b/g;
 const MATCHES_UPPERCASE = /[A-Z]+/;
 const MATCHES_LOWERCASE = /[a-z]+/;
 
+const CONTRACTION_MAP = {
+  ["i'd"]: 'I would',
+  ["i'll"]: 'I will',
+  ["i've"]: 'I have',
+  ["i'm"]: 'I am',
+  ["she'd"]: 'she would',
+  ["she's"]: 'she is',
+  ["she'll"]: 'she will',
+  ["he'd"]: 'he would',
+  ["he's"]: 'he is',
+  ["he'll"]: 'he will',
+  ["they'll"]: 'they will',
+  ["they're"]: 'they are',
+  ["they've"]: 'they have',
+  ["we'd"]: 'we would',
+  ["we're"]: 'we are',
+  ["we'll"]: 'we will',
+  ["we've"]: 'we have',
+  ["it'll"]: 'it will',
+  ["it's"]: 'is it',
+  ["it'd"]: 'is would',
+  ["that's"]: 'that is',
+  ["there's"]: 'there is',
+  ["where's"]: 'where is',
+  ["here's"]: 'here is',
+  ["let's"]: 'let us',
+  ["can't"]: 'cannot',
+  ["didn't"]: 'did not',
+  ["doesn't"]: 'does not',
+  ["don't"]: 'do not',
+  ["hadn't"]: 'had not',
+  ["hasn't"]: 'has not',
+  ["isn't"]: 'is not',
+  ["wasn't"]: 'was not',
+  ["won't"]: 'will not',
+  ["couldn't"]: 'could not',
+  ["shouldn't"]: 'should not',
+  ["wouldn't"]: 'would not',
+  ["could've"]: 'could have',
+  ["would've"]: 'would have',
+  ["should've"]: 'should have',
+  ["might've"]: 'might have',
+  ["must've"]: 'must have',
+  ["who's"]: 'who is',
+  ["'tis"]: 'it is',
+  ["'twas"]: 'it was',
+  ["you'll"]: 'you will',
+  ["'n"]: 'and',
+  ["'n'"]: 'and',
+  ["n'"]: 'and',
+};
+
 const retainCase = (original: string, replacement: string) => {
   const originalFirst = original.charAt(0);
   const replacementFirst = replacement.charAt(0);
@@ -39,6 +91,38 @@ const retainCase = (original: string, replacement: string) => {
   return replacement;
 };
 
+const swapWord = (
+  word: string,
+  random: randomSeed.RandomSeed,
+  dictionary: Dictionary
+) => {
+  if (word.length <= 2) {
+    return word;
+  }
+
+  const matches = dictionary[word.toLowerCase()];
+
+  if (!matches) {
+    return word;
+  }
+
+  const alternatives = matches.filter(
+    (alt) => !alt.includes(' ') && alt.length >= word.length
+  );
+
+  if (!alternatives.length) {
+    return word;
+  }
+
+  const newWord = alternatives[random.range(alternatives.length)];
+
+  if (!newWord) {
+    return word;
+  }
+
+  return retainCase(word, newWord);
+};
+
 const kirstify = (text: string, dictionary: Dictionary) => {
   const trimmed = text.trim();
   const random = randomSeed.create(trimmed);
@@ -47,31 +131,18 @@ const kirstify = (text: string, dictionary: Dictionary) => {
     .split('\n')
     .map((line) =>
       line.trim().replace(MATCHES_WORD, (word) => {
-        if (word.length <= 2) {
-          return word;
+        const lower = word.toLowerCase();
+
+        if (lower in CONTRACTION_MAP) {
+          return retainCase(
+            word,
+            CONTRACTION_MAP[lower as keyof typeof CONTRACTION_MAP]
+          ).replace(MATCHES_WORD, (subWord) =>
+            swapWord(subWord, random, dictionary)
+          );
         }
 
-        const matches = dictionary[word.toLowerCase()];
-
-        if (!matches) {
-          return word;
-        }
-
-        const alternatives = matches.filter(
-          (alt) => !alt.includes(' ') && alt.length >= word.length
-        );
-
-        if (!alternatives.length) {
-          return word;
-        }
-
-        const newWord = alternatives[random.range(alternatives.length)];
-
-        if (!newWord) {
-          return word;
-        }
-
-        return retainCase(word, newWord);
+        return swapWord(word, random, dictionary);
       })
     )
     .join('\n');
