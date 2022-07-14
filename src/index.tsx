@@ -60,6 +60,7 @@ const CONTRACTION_MAP = {
   ["'n"]: 'and',
   ["'n'"]: 'and',
   ["n'"]: 'and',
+  ["why'd"]: 'why did',
 };
 
 const SLANG_CONTRACTION_MAP = {
