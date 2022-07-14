@@ -87,6 +87,10 @@ const SLANG_CONTRACTION_MAP = {
   na: 'no',
 };
 
+const CUSTOM_OVERRIDES = {
+  never: 'at no time',
+};
+
 const retainCase = (original: string, replacement: string) => {
   const originalFirst = original.charAt(0);
   const replacementFirst = replacement.charAt(0);
@@ -171,6 +175,15 @@ const kirstify = (text: string, dictionary: Dictionary) => {
           return retainCase(
             word,
             SLANG_CONTRACTION_MAP[lower as keyof typeof SLANG_CONTRACTION_MAP]
+          ).replace(MATCHES_WORD, (subWord) =>
+            swapWord(subWord, random, dictionary)
+          );
+        }
+
+        if (lower in CUSTOM_OVERRIDES) {
+          return retainCase(
+            word,
+            CUSTOM_OVERRIDES[lower as keyof typeof CUSTOM_OVERRIDES]
           ).replace(MATCHES_WORD, (subWord) =>
             swapWord(subWord, random, dictionary)
           );
